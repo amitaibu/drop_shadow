@@ -79,3 +79,17 @@ function drop_shadow_add_shadow($commands = array()) {
 
   drupal_add_js($settings, 'setting');
 }
+
+/**
+ * Implementation of hook_init().
+ *
+ * Add round corners on the top of the message area.
+ */
+function drop_shadow_init() {
+  $commands[] = array('selector' => '.messages', 'left' => -5);
+  // Add the rounded corners.
+  drop_shadow_add_shadow($commands);
+
+  // Add an example message.
+  drupal_set_message(t('This message should have drop shadows.'));
+}

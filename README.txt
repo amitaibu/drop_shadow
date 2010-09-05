@@ -14,10 +14,10 @@ the function name to be your module's name).
  *
  * Add round corners on the top of the message area.
  */
-function foo_corners_init() {
+function foo_init() {
   $commands[] = array('selector' => '.messages');
   // Add the rounded corners.
-  rounded_corners_add_corners($commands);
+  drop_shadow_add_shadow($commands);
   
   // Add an example message.
   drupal_set_message(t('This message should have the top with rounded corners.'));
