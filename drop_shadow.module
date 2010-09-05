@@ -66,12 +66,12 @@ function drop_shadow_add_shadow($commands = array()) {
     if (!empty($command['selector'])) {
       // Add default values.
       $command += array(
-        'left' => '',
-        'top' => '',
-        'blur' => '',
-        'opacity' => '',
-        'color' => '',
-        'swap' => '',
+        'left' => 4,
+        'top' => 4,
+        'blur' => 2,
+        'opacity' => 0.5,
+        'color' => 'black',
+        'swap' => FALSE,
       );
       $settings['drop_shadow'][] = $command;
     }
@@ -86,7 +86,7 @@ function drop_shadow_add_shadow($commands = array()) {
  * Add round corners on the top of the message area.
  */
 function drop_shadow_init() {
-  $commands[] = array('selector' => '.messages', 'left' => -5);
+  $commands[] = array('selector' => '.messages', 'left' => -5, 'top' => -5);
   // Add the rounded corners.
   drop_shadow_add_shadow($commands);
 
