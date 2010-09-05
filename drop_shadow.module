@@ -1,0 +1,81 @@
+<?php
+/* $Id: rounded_corners.module,v 1.1.4.1 2009/07/24 09:54:53 yhager Exp $ */
+
+/**
+ * @file
+ * Add dropped shadows by jQuery.
+ */
+
+/**
+ * Add the drop shadow jQuery plugin.
+ *
+ * This function can be called many times, but the plugin will be added only
+ * once.
+ */
+function drop_shadow_add_js() {
+  static $added = FALSE;
+  if (!$added) {
+    drupal_add_js(drupal_get_path('module', 'drop_shadow') . '/jquery.dropshadow.js');
+    $added = TRUE;
+  }
+}
+
+/**
+ * API function to add drop shadows on a page.
+ *
+ * @code
+ *   // foo class will get default corners.
+ *   $commands[] = array('selector' => '.foo');
+ *
+ *   $commands[] = array(
+ *    'selector' => '#bar',
+ *    'effect' => 'round', // Use the "round" effect.
+ *    'corners' => 'top', // Round the top let and right corners.
+ *    'width' => '10px', // Must include "px".
+ *   );
+ *
+ *   drop_shadow_add_corners($commands);
+ * @endcode
+ *
+ * @param $options
+ *  Array of keyed arrays with the following keys:
+ *  - selector: The CSS selector. This can be any selector jquery uses in $().
+ *  - effect: The name of the effect to apply, such as round, bevel, notch,
+ *    bite, etc (default is round).
+ *    All commands can be seen in @link http://www.malsup.com/jquery/corner/ @endlink
+ *  - corners: One or more of: top, bottom, tr, tl, br, or bl. Default is all
+ *    corners.
+ *  - width: Width of the effect; in the case of rounded corners this is the
+ *    radius. specify this value using the px suffix such as 10px (It must be
+ *    pixels).
+ */
+function drop_shadow_add_shadow($commands = array()) {
+  static $added = FALSE;
+  if (!$added) {
+    // Add our JS file.
+    drupal_add_js(drupal_get_path('module', 'drop_shadow') . '/drop_shadow.js');
+
+    // Add the corner JS plugin.
+    drop_shadow_add_js();
+    $added = TRUE;
+  }
+
+  $settings = array('drop_shadow' => array());
+
+  foreach ($commands as $command) {
+    if (!empty($command['selector'])) {
+      // Add default values.
+      $command += array(
+        'left' => '',
+        'top' => '',
+        'blur' => '',
+        'opacity' => '',
+        'color' => '',
+        'swap' => '',
+      );
+      $settings['drop_shadow'][] = $command;
+    }
+  }
+
+  drupal_add_js($settings, 'setting');
+}

@@ -1,0 +1,4 @@
+; $Id $
+name = Drop shadow
+description = "Enables dropped shadows with JQuery"
+core = 6.x
