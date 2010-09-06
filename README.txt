@@ -15,11 +15,12 @@ the function name to be your module's name).
  * Add drop shadows on the top of the message area.
  */
 function foo_init() {
+  // Add an example message.
+  drupal_set_message(t('This message should have dropped shadows.'));
+
+  $commands = array();
   $commands[] = array('selector' => '.messages');
   
   // Add the drop shadow.
   drop_shadow_add_shadow($commands);
-  
-  // Add an example message.
-  drupal_set_message(t('This message should have dropped shadows.'));
 }
