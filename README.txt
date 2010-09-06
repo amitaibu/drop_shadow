@@ -17,7 +17,7 @@ the function name to be your module's name).
 function foo_init() {
   $commands[] = array('selector' => '.messages');
   
-  // Add the rounded corners.
+  // Add the drop shadow.
   drop_shadow_add_shadow($commands);
   
   // Add an example message.
