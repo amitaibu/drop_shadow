@@ -1,6 +1,6 @@
 $Id: INSTALL.txt,v 1.1.4.1 2009/07/24 09:54:53 yhager Exp $
 
-Rounded corners is a wrapper module around the round shadow jQuery plugin 
+Drop shadow is a wrapper module around the round shadow jQuery plugin 
 http://plugins.jquery.com/project/DropShadow
 
 This module also provides an API function that allows adding javascript 
@@ -12,7 +12,7 @@ the function name to be your module's name).
 /**
  * Implementation of hook_init().
  *
- * Add round corners on the top of the message area.
+ * Add drop shadows on the top of the message area.
  */
 function foo_init() {
   $commands[] = array('selector' => '.messages');

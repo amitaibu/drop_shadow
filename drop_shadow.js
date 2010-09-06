@@ -1,12 +1,12 @@
 // $Id:$
 
 /**
- * Add rounded corners.
+ * Add drop shadows.
  */ 
 Drupal.behaviors.dropShadows = function() {
   dropShadows = Drupal.settings.drop_shadow;
 
-  // Add the rounded corners to the page.
+  // Add the drop shadows to the page.
   for (var key in dropShadows) {
     var options = {
       'left' : dropShadows[key]['left'],
