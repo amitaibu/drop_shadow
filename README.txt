@@ -1,10 +1,10 @@
 $Id: INSTALL.txt,v 1.1.4.1 2009/07/24 09:54:53 yhager Exp $
 
-Rounded corners is a wrapper module around the corner jQuery plugin 
-http://www.malsup.com/jquery/corner/
+Rounded corners is a wrapper module around the round shadow jQuery plugin 
+http://plugins.jquery.com/project/DropShadow
 
-This module also provides an API function that allows adding javascript corner()
-commands via PHP.
+This module also provides an API function that allows adding javascript 
+dropShadow() commands via PHP.
 
 For example, copy this code snippet to your custom module (change the "foo" in 
 the function name to be your module's name).
@@ -16,6 +16,7 @@ the function name to be your module's name).
  */
 function foo_init() {
   $commands[] = array('selector' => '.messages');
+  
   // Add the rounded corners.
   drop_shadow_add_shadow($commands);
   

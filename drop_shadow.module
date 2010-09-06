@@ -24,30 +24,42 @@ function drop_shadow_add_js() {
  * API function to add drop shadows on a page.
  *
  * @code
- *   // foo class will get default corners.
+ *   // foo class will get default drop shadow.
  *   $commands[] = array('selector' => '.foo');
  *
  *   $commands[] = array(
- *    'selector' => '#bar',
- *    'effect' => 'round', // Use the "round" effect.
- *    'corners' => 'top', // Round the top let and right corners.
- *    'width' => '10px', // Must include "px".
+ *     'selector' => '#bar'
+ *     'left' => 4,
+ *     'top' => 4,
+ *     'blur' => 2,
+ *     'opacity' => 0.5,
+ *     'color' => 'black',
+ *     'swap' => FALSE,
  *   );
  *
- *   drop_shadow_add_corners($commands);
+ *   drop_shadow_add_shadow($commands);
  * @endcode
  *
  * @param $options
  *  Array of keyed arrays with the following keys:
  *  - selector: The CSS selector. This can be any selector jquery uses in $().
- *  - effect: The name of the effect to apply, such as round, bevel, notch,
- *    bite, etc (default is round).
- *    All commands can be seen in @link http://www.malsup.com/jquery/corner/ @endlink
- *  - corners: One or more of: top, bottom, tr, tl, br, or bl. Default is all
- *    corners.
- *  - width: Width of the effect; in the case of rounded corners this is the
- *    radius. specify this value using the px suffix such as 10px (It must be
- *    pixels).
+ *  - left: The left and top parameters specify the distance and direction, in
+ *    pixels, to offset the shadow. Zero values position the shadow directly
+ *    behind the element. Positive values shift the shadow to the right and
+ *    down, while negative values shift the shadow to the left and up.
+ *  - top: See the left property.
+ *  - blur: The blur parameter specifies the spread, or dispersion, of the
+ *    shadow. Zero produces a sharp shadow, one or two produces a normal shadow,
+ *    and three or four produces a softer shadow. Higher values increase the
+ *    processing load.
+ *  - opacity: The opacity parameter should be a decimal value, usually less
+ *    than one. You can use a value higher than one in special situations, e.g.
+ *    with extreme blurring.
+ *  - color: Color is specified in the usual manner, with a color name or hex
+ *    value. The color parameter does not apply with transparent images.
+ *  - swap: The swap parameter reverses the stacking order of the original and
+ *    the shadow. This can be used for special effects, like an embossed or
+ *    engraved look.
  */
 function drop_shadow_add_shadow($commands = array()) {
   static $added = FALSE;
@@ -86,9 +98,20 @@ function drop_shadow_add_shadow($commands = array()) {
  * Add round corners on the top of the message area.
  */
 function drop_shadow_init() {
-  $commands[] = array('selector' => '.messages', 'left' => -5, 'top' => -5);
+  $commands = array();
+  $commands[] = array('selector' => '.messages', 'left' => 2, 'top' => 2);
+  $commands[] = array('selector' => '#edit-search-theme-form-1');
   // Add the rounded corners.
   drop_shadow_add_shadow($commands);
+
+
+  $commands = array();
+  $commands[] = array('selector' => '.messages');
+  $commands[] = array('selector' => '.right-corner .dropShadow');
+  // Add the rounded corners.
+  rounded_corners_add_corners($commands);
+
+
 
   // Add an example message.
   drupal_set_message(t('This message should have drop shadows.'));
