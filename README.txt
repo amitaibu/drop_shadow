@@ -1,6 +1,6 @@
 $Id: INSTALL.txt,v 1.1.4.1 2009/07/24 09:54:53 yhager Exp $
 
-Drop shadow is a wrapper module around the round shadow jQuery plugin 
+Drop shadow is a wrapper module around the drop shadow jQuery plugin 
 http://plugins.jquery.com/project/DropShadow
 
 This module also provides an API function that allows adding javascript 
@@ -21,5 +21,5 @@ function foo_init() {
   drop_shadow_add_shadow($commands);
   
   // Add an example message.
-  drupal_set_message(t('This message should have the top with rounded corners.'));
+  drupal_set_message(t('This message should have dropped shadows.'));
 }
